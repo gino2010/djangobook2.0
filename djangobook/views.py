@@ -59,3 +59,7 @@ def display_meta(request):
 
 def debug(request):
     return None
+
+
+def display_zip(request):
+    return render(request, 'global.html')

@@ -7,5 +7,16 @@
 <body>
 <p>{{ somevariable|cut:" " }}</p>
 <p>{{ somevariable|lower }}</p>
+<p>The time is {% current_time "%Y-%m-%d %I:%M %p" %}.</p>
+{% current_time2 "%Y-%m-%d %I:%M %p" %}
+<p>The time2 is {{ current_time }}.</p>
+{% current_time3 "%Y-%m-%d %I:%M %p" as my_current_time %}
+<p>The time3 is {{ my_current_time }}.</p>
+{#chapter 09 parsing tag#}
+{% upper %}
+    This will appear in uppercase, {{ user_name }}.
+{% endupper %}
+
+<p>The time4 is {% current_time4 "%Y-%m-%d %I:%M %p" %}.</p>
 </body>
 </html>

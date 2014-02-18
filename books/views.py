@@ -5,8 +5,9 @@ from django.shortcuts import render
 
 # Create your views here.
 # chapter07
+from django.template import RequestContext
 from books.forms import ContactForm
-from books.models import Book
+from books.models import Book, Author
 
 
 def search_form(request):
@@ -92,5 +93,21 @@ def contact(request):
     return render(request, 'contact_form.html', {'form': form})
 
 
+def thanks_proc(request):
+    "A context processor that provides 'app', 'user' and 'ip_address'."
+    return {
+        'app': 'My app',
+        'user': request.user,
+        'ip_address': request.META['REMOTE_ADDR']
+    }
+
+
 def thanks(request):
-    return render(request, 'thanks.html')
+    return render(request, 'thanks.html', {'message': 'just message'},
+                  context_instance=RequestContext(request, processors=[thanks_proc]))
+
+
+# chapter09 Inclusion Tags
+def show_author(request):
+    authors = Author.objects.all()
+    return render(request, 'show_author.html', {'author': authors[0]})

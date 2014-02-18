@@ -35,7 +35,10 @@ urlpatterns = patterns('',
 
     #chapter07
     url(r'^meta/$', views.display_meta),
-    url(r'^books/', include('books.urls', namespace='books'))
+    url(r'^books/', include('books.urls', namespace='books')),
+
+    # chapter09 Custom template loader
+    url(r'^zip/$', views.display_zip)
 )
 
 # chapter08 debug url patterns

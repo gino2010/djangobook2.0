@@ -1,3 +1,4 @@
+{#chapter 09 Inclusion Tags#}
 <!DOCTYPE html>
 {% load  books_extras %}
 <html>
@@ -5,9 +6,10 @@
     <title></title>
 </head>
 <body>
-thanks
-<p>{{ message }}</p>
-<p>{{ app }} / {{ user }} / {{ ip_address }}</p>
+{% if author %}
+    {% books_for_author author %}
+{% endif %}
+
 <p>{% jump_link %}</p>
 </body>
 </html>

@@ -40,4 +40,4 @@ def day_archive(request, year, month, day):
 
 # chapter09 Creating a Template Library
 def filter_view(request):
-    return render(request, 'filter.html', {'somevariable': 'Django Book'})
+    return render(request, 'book_snippet.html', {'somevariable': 'Django Book'})

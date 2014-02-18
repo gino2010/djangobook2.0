@@ -59,8 +59,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     #django 1.6 default above-----
-    "django.core.context_processors.request"
+    "django.core.context_processors.request",
+    #customer define processor
+    "global.proc.custom_proc"
 )
+
+#chapter09
+TEMPLATE_LOADERS = (
+    'global.zip_loader.load_template_source',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+TEMPLATE_ZIP_FILES = (os.path.join(BASE_DIR, 'global/global.zip').replace('\\', '/'),)
 #chapter03
 ROOT_URLCONF = 'djangobook.urls'
 
