@@ -1,0 +1,27 @@
+{#chapter07#}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+{# version 2   #}
+{#{% if error %}#}
+{#    <p style="color: red;">Please submit a search term 20 characters or shorter.</p>#}
+{#{% endif %}#}
+
+{# version 3  #}
+{% if errors %}
+    <ul>
+        {% for error in errors %}
+            <li style="color: red;">{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form action="{% url 'books:search' %}" method="get">
+    {#<form action="" method="get">#}
+    <input type="text" name="q">
+    <input type="submit" value="Search">
+</form>
+</body>
+</html>
