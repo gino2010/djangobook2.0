@@ -36,3 +36,8 @@ def my_view(request, month, day):
 def day_archive(request, year, month, day):
     date = datetime.date(int(year), int(month), int(day))
     return HttpResponse("date is %s" % date)
+
+
+# chapter09 Creating a Template Library
+def filter_view(request):
+    return render(request, 'filter.html', {'somevariable': 'Django Book'})

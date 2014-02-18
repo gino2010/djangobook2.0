@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^mydata/birthday/$', views.my_view, {'month': 'jan', 'day': '06'}),
     url(r'^mydata/(?P<month>\w{3})/(?P<day>\d\d)/$', views.my_view),
     url(r'^mydata/(\d{4})/(\d{2})/(\d{2})/$', views.day_archive),
+    url(r'^filter/$', views.filter_view),
 
 )
