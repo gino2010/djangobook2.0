@@ -1,7 +1,7 @@
 from django.contrib import admin
 #chapter06
 # Register your models here.
-from books.models import Publisher, Author, Book
+from books.models import Publisher, Author, Book, Person
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -18,6 +18,11 @@ class BookAdmin(admin.ModelAdmin):
     filter_horizontal = ('authors',) #in change page
     raw_id_fields = ('publisher',)
 
+
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'sex')
+
 admin.site.register(Publisher)
+admin.site.register(Person, PersonAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
