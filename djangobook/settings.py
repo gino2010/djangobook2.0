@@ -121,9 +121,19 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'),
 )
 
+# chapter12 if error send mail to admin
+ADMINS = (
+    ('admin', 'admin@example.com'),
+)
+
 #send_mail
 EMAIL_HOST = 'smtp.126.com'
 EMAIL_HOST_USER = 'yourmail@126.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# chapter12 Setting Up Broken Link Alerts
+MANAGERS = (
+    ('George Harrison', 'gharrison@example.com'),
+)
