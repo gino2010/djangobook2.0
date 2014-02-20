@@ -14,6 +14,7 @@ from djangobook import views
 #     (r'^time/$', 'current_datetime'),
 #     (r'^time/plus/(d{1,2})/$', 'hours_ahead'),
 # )
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -38,7 +39,7 @@ urlpatterns = patterns('',
     url(r'^books/', include('books.urls', namespace='books')),
 
     # chapter09 Custom template loader
-    url(r'^zip/$', views.display_zip)
+    url(r'^zip/$', views.display_zip),
 )
 
 # chapter08 debug url patterns

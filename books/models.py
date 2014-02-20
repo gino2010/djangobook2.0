@@ -43,7 +43,7 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField()
     #chapter10 add new field
-    num_pages = models.IntegerField(blank=True)
+    num_pages = models.IntegerField(blank=True, default=0)
 
     #chapter10
     objects = BookManager()
@@ -86,6 +86,7 @@ class Person(models.Model):
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=50, blank=True)
 
+    objects = models.Manager()
     person = PersonManager()
     people = models.Manager()
     men = MaleManager()

@@ -13,6 +13,5 @@ urlpatterns = patterns('',
     url(r'^author/$', views.show_author, name='show_author'),
     # chapter11 Generic Views list_detail has been deprecated
     url(r'^publishers/$', ListView.as_view(queryset= Publisher.objects.all(),
-                                           template_name='publisher_list_page.html',
-                                           object)),
+                                           template_name='publisher_list_page.html')),
 )
