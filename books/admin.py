@@ -1,7 +1,7 @@
 from django.contrib import admin
 #chapter06
 # Register your models here.
-from books.models import Publisher, Author, Book, Person
+from books.models import Publisher, Author, Book, Person, Group
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -26,3 +26,4 @@ admin.site.register(Publisher)
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
+admin.site.register(Group)

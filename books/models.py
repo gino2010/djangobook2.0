@@ -21,6 +21,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=40)
     email = models.EmailField('e-mail', blank=True) #verbose_name = 'e-mail'
+    # books = models.ManyToManyField(Book)
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
@@ -108,3 +109,19 @@ class Person(models.Model):
         # "Returns the person's full name."
         return u'%s %s' % (self.first_name, self.last_name)
     full_name = property(_get_full_name)
+
+
+class Group(models.Model):
+    group_name = models.CharField(max_length=50)
+    create_date = models.DateField()
+    persons = models.ManyToManyField(Person, through="Membership")
+
+    def __unicode__(self):
+        return self.group_name
+
+
+class Membership(models.Model):
+    person = models.ForeignKey(Person)
+    group = models.ForeignKey(Group)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=64)
