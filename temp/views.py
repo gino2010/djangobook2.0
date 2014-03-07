@@ -1,9 +1,13 @@
 import datetime
+import os
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
 
 # Create your views here.
+from djangobook import settings
+
+
 def temp_home(request):
     return HttpResponse("It is temp home")
 
@@ -41,3 +45,10 @@ def day_archive(request, year, month, day):
 # chapter09 Creating a Template Library
 def filter_view(request):
     return render(request, 'book_snippet.html', {'somevariable': 'Django Book'})
+
+
+# chapter13 Generating Non-HTML Content
+def my_image(request):
+    print(os.getcwd())
+    image_data = open(os.path.join(settings.MEDIA_ROOT, "image/hb.png").replace('\\', '/'), "rb").read()
+    return HttpResponse(image_data, mimetype="image/png")

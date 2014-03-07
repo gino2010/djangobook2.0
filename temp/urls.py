@@ -1,11 +1,12 @@
 from django.conf.urls import patterns, url
 from temp import views
-from temp.views import temp_home, ordering, navtemp
+from temp.views import temp_home, ordering, navtemp, my_image
 
 __author__ = 'Gino'
 
 urlpatterns = patterns('',
     url(r'^$', temp_home),
+    url(r'^image/$', my_image),
     url(r'^ordering/$', ordering),
     url(r'^(?P<title>[^/]+)/(?P<current>\d+)/$', navtemp),
     # chapter08
