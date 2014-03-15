@@ -10,7 +10,7 @@ from djangobook import settings
 
 
 def temp_home(request):
-    return HttpResponse("It is temp home")
+    return HttpResponse("It is others home")
 
 
 def ordering(request):

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
-from temp import views
-from temp.views import temp_home, ordering, navtemp, my_image, unruly_passengers_csv
+from others import views
+from others.views import temp_home, ordering, navtemp, my_image, unruly_passengers_csv
 
 __author__ = 'Gino'
 

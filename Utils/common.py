@@ -133,7 +133,7 @@ def uuid2str(uuid_str):
     count = 0
     temp_str = uuid.UUID(uuid_str).hex
     # temp_list = [temp_str[i:i+2] for i in range(0, len(temp_str), 2)]
-    # for temp in [int(elem.encode("hex")) for elem in uuid.UUID(uuid_str).hex]:
+    # for others in [int(elem.encode("hex")) for elem in uuid.UUID(uuid_str).hex]:
     for temp in temp_str:
         count += 1
         print(int(temp, 16))
