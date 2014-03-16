@@ -1,11 +1,15 @@
+from cStringIO import StringIO
 import csv
 import datetime
 import os
+from django.contrib.gis.feeds import Feed
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
 
 # Create your views here.
+from django.utils.feedgenerator import Atom1Feed
+from reportlab.pdfgen import canvas
 from djangobook import settings
 
 
@@ -70,3 +74,99 @@ def unruly_passengers_csv(request):
         writer.writerow([year, num])
 
     return response
+
+
+#chapter 13 Generating PDFs install reportlab lib before run this function
+def hello_pdf(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=hello.pdf'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(100, 100, "Hello world.")
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
+
+
+#chapter 13 complex pdf
+def hello_pdf_com(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=hello.pdf'
+
+    temp = StringIO()
+
+    # Create the PDF object, using the StringIO object as its "file."
+    p = canvas.Canvas(temp)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(100, 100, "Hello world.")
+
+    # Close the PDF object cleanly.
+    p.showPage()
+    p.save()
+
+    # Get the value of the StringIO buffer and write it to the response.
+    response.write(temp.getvalue())
+    return response
+
+
+class LatestEntries(Feed):
+    title = "My Blog"
+    link = "/archive/"
+    description = "The latest news about stuff."
+
+    def items(self):
+        return ['1', '2', '3']
+
+    def item_title(self, item):
+        return 'gtitle'
+
+    def item_description(self, item):
+        return 'gcreate'
+
+    def item_link(self, item):
+        return '/gtest' #reverse('news-item', args=[item.pk])
+
+
+#Atom
+class AtomSiteNewsFeed(LatestEntries):
+    feed_type = Atom1Feed
+    subtitle = LatestEntries.description
+
+
+#more complex feed
+# class TagFeed(Feed):
+#     def get_object(self, bits):
+#         # In case of "/feeds/tags/cats/dogs/mice/", or other such
+#         # clutter, check that bits has only one member.
+#         if len(bits) != 1:
+#             raise ObjectDoesNotExist
+#         return Tag.objects.get(tag=bits[0])
+#
+#     def title(self, obj):
+#         return "My Blog: Entries tagged with %s" % obj.tag
+#
+#     def link(self, obj):
+#         return obj.get_absolute_url()
+#
+#     def description(self, obj):
+#         return "Entries tagged with %s" % obj.tag
+#
+#     def items(self, obj):
+#         entries = Entry.objects.filter(tags__id__exact=obj.id)
+#         return entries.order_by('-pub_date')[:30]
+
+
+def test_len(request, bits):
+    split_list = bits.split('/')
+    strtemp = "bit len " + str(len(split_list)) + " " + split_list[0]
+    return HttpResponse(strtemp)

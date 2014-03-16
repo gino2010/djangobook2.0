@@ -1,3 +1,5 @@
+from django.contrib import sitemaps
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.template import Context
 from django.template.loader import get_template
@@ -63,3 +65,15 @@ def debug(request):
 
 def display_zip(request):
     return render(request, 'global.html')
+
+
+#chapter 13 Sitemap Framework
+class StaticViewSitemap(sitemaps.Sitemap):
+    priority = 0.5
+    changefreq = 'daily'
+
+    def items(self):
+        return ['main', 'about', 'license']
+
+    def location(self, item):
+        return reverse(item)

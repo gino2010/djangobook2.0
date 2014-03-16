@@ -36,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #chapter 13 sitemap framework
+    'django.contrib.sitemaps',
     'others',
     'books',
     'cm',

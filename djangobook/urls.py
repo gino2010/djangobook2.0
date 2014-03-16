@@ -15,6 +15,10 @@ from djangobook import views
 #     (r'^time/plus/(d{1,2})/$', 'hours_ahead'),
 # )
 
+sitemaps = {
+    'static': views.StaticViewSitemap,
+}
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -40,6 +44,13 @@ urlpatterns = patterns('',
 
     # chapter09 Custom template loader
     url(r'^zip/$', views.display_zip),
+
+    # chapter13 Sitemap Framework
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
+    url(r'^main/$', views.my_homepage_view, name='main'),
+    url(r'^about/$', views.my_homepage_view, name='about'),
+    url(r'^license/$', views.my_homepage_view, name='license'),
 )
 
 # chapter08 debug url patterns
