@@ -170,3 +170,55 @@ def test_len(request, bits):
     split_list = bits.split('/')
     strtemp = "bit len " + str(len(split_list)) + " " + split_list[0]
     return HttpResponse(strtemp)
+
+
+#chapter14 cookies
+def show_color(request):
+    if "favorite_color" in request.COOKIES:
+        return HttpResponse("Your favorite color is %s" %
+                            request.COOKIES["favorite_color"])
+    else:
+        return HttpResponse("You don't have a favorite color.")
+
+
+def set_color(request):
+    if "favorite_color" in request.GET:
+
+        # Create an HttpResponse object...
+        response = HttpResponse("Your favorite color is now %s" %
+                                request.GET["favorite_color"])
+
+        # ... and set a cookie on the response
+        response.set_cookie("favorite_color",
+                            request.GET["favorite_color"])
+
+        return response
+
+    else:
+        return HttpResponse("You didn't give a favorite color.")
+
+
+#chapter14 session
+def show_color_session(request):
+    if "favorite_color" in request.session:
+        temp = "Your favorite color is %s" % request.session["favorite_color"]
+        del request.session["favorite_color"]
+        return HttpResponse(temp)
+    else:
+        return HttpResponse("You don't have a favorite color.")
+
+
+def set_color_session(request):
+    if "favorite_color" in request.GET:
+
+        # Create an HttpResponse object...
+        response = HttpResponse("Your favorite color is now %s" %
+                                request.GET["favorite_color"])
+
+        # ... and set a session on the response
+        request.session["favorite_color"] = request.GET["favorite_color"]
+
+        return response
+
+    else:
+        return HttpResponse("You didn't give a favorite color.")
