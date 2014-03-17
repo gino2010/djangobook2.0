@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form method="post" action="{% url 'others:test' %}">
+    {% csrf_token %}
+    <input type="text" id="inputEmail"
+           name="username" placeholder="邮箱/用户名">
+    <input type="password" id="inputPassword"
+           name="password" placeholder="输入密码">
+
+    <input type="submit" value="登 录"/>
+</form>
+</body>
+</html>

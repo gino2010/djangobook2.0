@@ -32,4 +32,6 @@ urlpatterns = patterns('',
     url(r'^set_session/$', views.set_color_session),
     url(r'^show_session/$', views.show_color_session),
 
+    url(r'^test_cookies/$', views.test_cookies, name='test'),
+
 )

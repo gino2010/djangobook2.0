@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     url(r'^time/plus/(\d{1,2})/$', views.hours_ahead),
 
     #chapter04
-    url(r'^others/', include('others.urls')),
+    url(r'^others/', include('others.urls', namespace='others')),
 
     #chapter06
     url(r'^admin/', include(admin.site.urls)),
