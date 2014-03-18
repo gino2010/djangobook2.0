@@ -7,7 +7,7 @@
 <p>this is user home</p>
 {% if user.is_authenticated %}
     <div>
-        user login
+        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
         <form action="{% url 'user:logout' %}">
             <input type="submit" value="logout">
         </form>
@@ -15,6 +15,9 @@
 {% else %}
     <div>
         user not login
+        <form action="{% url 'user:register' %}">
+            <input type="submit" value="register">
+        </form>
     </div>
     <form action="{% url 'user:login' %}" method="post">
         {% csrf_token %}
