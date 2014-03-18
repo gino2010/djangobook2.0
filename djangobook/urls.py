@@ -51,6 +51,9 @@ urlpatterns = patterns('',
     url(r'^main/$', views.my_homepage_view, name='main'),
     url(r'^about/$', views.my_homepage_view, name='about'),
     url(r'^license/$', views.my_homepage_view, name='license'),
+
+    # chapter14 Users and Authentication
+    url(r'^user/', include('usermanager.urls', namespace='user')),
 )
 
 # chapter08 debug url patterns

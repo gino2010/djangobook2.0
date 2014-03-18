@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<p>this is user home</p>
+{% if user.is_authenticated %}
+    <div>
+        user login
+        <form action="{% url 'user:logout' %}">
+            <input type="submit" value="logout">
+        </form>
+    </div>
+{% else %}
+    <div>
+        user not login
+    </div>
+    <form action="{% url 'user:login' %}" method="post">
+        {% csrf_token %}
+        <label for="username">User name:</label>
+        <input type="text" name="username" value="" id="username">
+        <label for="password">Password:</label>
+        <input type="password" name="password" value="" id="password">
+
+        <input type="submit" value="login"/>
+    </form>
+{% endif %}
+</body>
+</html>

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'others',
     'books',
     'cm',
+    'usermanager',
 )
 
 MIDDLEWARE_CLASSES = (
